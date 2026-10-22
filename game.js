@@ -1,11 +1,3 @@
-/*
-  NOIR: RED TIE — платформер для начинающих.
-  Никаких библиотек! Вся игра — Canvas API + JavaScript.
-
-  Структура: 1) уровни, 2) управление, 3) игровая логика,
-             4) отрисовка, 5) игровой цикл.
-*/
-
 const canvas = document.getElementById('game');
 const ctx = canvas.getContext('2d');
 ctx.imageSmoothingEnabled = false;
