@@ -1,0 +1,127 @@
+/* Mobile First. Один системный моноширинный шрифт — никаких библиотек. */
+:root {
+  color-scheme: dark;
+  --background: #101115;
+  --panel: #191b20;
+  --line: #35363d;
+  --text: #f0ede8;
+  --dim: #95969b;
+  --red: #d43c48;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--text);
+  font-family: "Courier New", Courier, monospace;
+  font-size: 14px;
+}
+button { font: inherit; cursor: pointer; }
+button:focus-visible, a:focus-visible { outline: 2px solid var(--red); outline-offset: 4px; }
+.page { width: min(100% - 28px, 1180px); margin: 0 auto; }
+.topbar {
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--line);
+  gap: 10px;
+}
+.brand { color: var(--text); text-decoration: none; font-weight: 900; letter-spacing: .08em; font-size: 13px; }
+.brand span { color: var(--red); margin: 0 5px; }
+.topbar-right { display: none; font-size: 11px; letter-spacing: .1em; color: var(--dim); }
+.red-square { display: inline-block; height: 7px; width: 7px; background: var(--red); margin: 0 9px; }
+.intro { display: flex; justify-content: space-between; align-items: center; padding: 40px 0 32px; gap: 16px; }
+.intro-copy { max-width: 850px; }
+.eyebrow, .info-number, .hud-label, .overlay-eyebrow { color: var(--dim); font-size: 10px; font-weight: 700; letter-spacing: .19em; }
+.small-dot { display: inline-block; background: var(--red); width: 7px; height: 7px; margin-right: 7px; }
+h1 { margin: 14px 0; font-size: clamp(39px, 8.2vw, 86px); line-height: 1; font-weight: 900; letter-spacing: -.085em; white-space: nowrap; }
+h1 .white { color: #f5f4ef; }
+h1 .red-colon { color: var(--red); }
+.intro p { color: #a8a8af; line-height: 1.7; font-size: 12px; max-width: 620px; margin: 0; }
+.case-stamp { display: none; width: 118px; height: 118px; border: 2px dashed rgba(212,60,72,.45); transform: rotate(8deg); color: var(--red); flex-direction: column; align-items: center; justify-content: center; gap: 4px; }
+.case-stamp span { letter-spacing: .1em; font-size: 9px; font-weight: bold; }
+.case-stamp strong { font-size: 48px; line-height: 1; }
+.case-stamp small { font-size: 9px; letter-spacing: .2em; }
+.game-shell { background: var(--panel); border: 1px solid var(--line); box-shadow: 0 15px 60px #0005; }
+.hud { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; min-height: 66px; }
+.hud-cell { min-width: 0; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: 11px 9px; border-right: 1px solid var(--line); gap: 7px; }
+.hud-cell strong { font-size: 13px; letter-spacing: .01em; }
+.hud-cell:last-child { border-right: none; }
+.hud-label { font-size: 8px; letter-spacing: .09em; }
+#hud-lives { color: var(--red); white-space: nowrap; }
+.hud-best { display: none; }
+.canvas-wrapper { position: relative; width: 100%; overflow: hidden; background: #11131a; aspect-ratio: 800 / 450; }
+canvas { display: block; width: 100%; height: 100%; image-rendering: pixelated; }
+.screen-overlay { position: absolute; inset: 0; display: flex; justify-content: center; align-items: center; background: rgba(10,11,16,.84); padding: 14px; }
+.screen-overlay[hidden] { display: none; }
+.overlay-content { text-align: center; max-width: 540px; }
+.overlay-eyebrow { color: #ea757b; font-size: 9px; }
+.overlay-content h2 { margin: 14px 0 12px; font-size: clamp(22px, 5.4vw, 55px); line-height: 1.08; font-style: normal; letter-spacing: -.04em; font-weight: 900; }
+.overlay-content h2 em { color: var(--red); font-style: normal; }
+.overlay-content > p { color: #c0bfc1; font-size: 10px; line-height: 1.6; margin: 0 auto 15px; max-width: 420px; }
+.primary-button { border: none; color: white; background: var(--red); padding: 12px 17px; font-weight: 900; font-size: 11px; letter-spacing: .06em; transition: background .2s, transform .2s; }
+.primary-button:hover { background: #ed5360; transform: translateY(-2px); }
+.primary-button span { margin-left: 18px; }
+.overlay-content > p.overlay-hint { font-size: 8px; margin: 12px 0 0; color: #8f8f95; }
+.canvas-corner { pointer-events: none; position: absolute; width: 14px; height: 14px; border: solid var(--red); border-width: 0; }
+.canvas-corner-tl { left: 8px; top: 8px; border-left-width: 2px; border-top-width: 2px; }
+.canvas-corner-tr { right: 8px; top: 8px; border-right-width: 2px; border-top-width: 2px; }
+.canvas-corner-bl { left: 8px; bottom: 8px; border-left-width: 2px; border-bottom-width: 2px; }
+.canvas-corner-br { right: 8px; bottom: 8px; border-right-width: 2px; border-bottom-width: 2px; }
+.game-toast { opacity: 0; position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); color: white; background: rgba(12,13,17,.92); padding: 10px 14px; border: 1px solid var(--red); white-space: nowrap; font-weight: 700; font-size: 10px; transition: opacity .2s; pointer-events: none; max-width: 90%; white-space: normal; text-align: center; }
+.game-toast.visible { opacity: 1; }
+.game-footer { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; min-height: 58px; padding: 12px 13px; border-top: 1px solid var(--line); }
+.game-status { display: flex; align-items: center; gap: 9px; color: var(--dim); font-size: 9px; letter-spacing: .06em; }
+.pulse { width: 8px; height: 8px; background: var(--red); box-shadow: 0 0 12px #b3294190; }
+.game-buttons { display: flex; gap: 7px; }
+.game-buttons button { background: transparent; border: 1px solid #54535a; color: #d5d4d8; font-size: 9px; font-weight: 700; letter-spacing: .07em; padding: 11px 12px; }
+.game-buttons button:hover { color: white; border-color: var(--red); }
+.touch-controls { display: flex; justify-content: space-between; gap: 18px; padding: 17px 0 0; user-select: none; -webkit-user-select: none; touch-action: none; }
+.touch-movement { display: flex; gap: 12px; }
+.touch-button { border: 1px solid #575860; background: var(--panel); color: white; font-weight: 900; font-size: 17px; min-width: 62px; min-height: 56px; border-radius: 4px; touch-action: none; }
+.touch-button.active { background: #772832; border-color: var(--red); }
+.touch-jump { font-size: 11px; min-width: 108px; background: #412027; border-color: #863642; }
+.information { display: grid; grid-template-columns: 1fr; gap: 16px; padding: 26px 0 32px; }
+.info-panel { padding: 21px; border: 1px solid var(--line); background: #17181d; }
+.info-number { color: var(--red); font-size: 9px; }
+.info-panel h3 { font-size: 16px; line-height: 1.3; margin: 12px 0; }
+.info-panel p { color: var(--dim); font-size: 11px; line-height: 1.8; margin: 0; }
+kbd { display: inline-block; background: #2e3036; color: white; padding: 0 5px; border: 1px solid #494a50; font-family: inherit; }
+.site-footer { padding: 18px 0 30px; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 12px; color: var(--dim); font-size: 9px; line-height: 1.6; letter-spacing: .03em; }
+.footer-note { font-size: 9px; color: #7c7d85; }
+@media (min-width: 640px) {
+  .topbar-right { display: inline; }
+  .intro { padding: 55px 0 34px; }
+  .intro p { font-size: 13px; }
+  .case-stamp { display: flex; }
+  .hud { grid-template-columns: repeat(5, 1fr); }
+  .hud-best { display: flex; }
+  .hud-cell { padding: 12px 20px; }
+  .hud-label { font-size: 9px; }
+  .hud-cell strong { font-size: 17px; }
+  .game-footer { padding: 14px 22px; }
+  .game-status, .game-buttons button { font-size: 10px; }
+  .information { grid-template-columns: repeat(3, 1fr); }
+  .overlay-content > p { font-size: 12px; margin-bottom: 20px; }
+  .overlay-content > p.overlay-hint { font-size: 10px; margin-top: 20px; }
+  .primary-button { padding: 16px 24px; font-size: 13px; }
+}
+@media (min-width: 920px) {
+  .touch-controls { display: none; }
+  .information { padding-top: 18px; }
+  .site-footer { flex-direction: row; justify-content: space-between; flex-wrap: wrap; }
+  .footer-note { flex-basis: 100%; }
+}
+@media (max-width: 360px) {
+  .page { width: min(100% - 16px, 1180px); }
+  .hud-cell { padding: 8px 5px; }
+  .hud-cell strong { font-size: 11px; }
+  .hud-label { font-size: 7px; }
+  h1 { font-size: 36px; }
+  .overlay-content h2 { margin: 8px 0; font-size: 20px; }
+  .overlay-content > p { margin-bottom: 8px; line-height: 1.3; }
+  .overlay-content > p.overlay-hint { display: none; }
+  .primary-button { padding: 8px 12px; }
+}

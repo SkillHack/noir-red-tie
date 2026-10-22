@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101115">
+  <meta name="description" content="NOIR: RED TIE — простая пиксельная игра-платформер про детектива на ночных крышах.">
+  <title>NOIR: RED TIE — пиксельный платформер</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="game.js" defer></script>
+</head>
+<body>
+  <div class="page">
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="На главную">SKILLHACK <span>×</span> NOIR</a>
+      <span class="topbar-right">ДЕЛО № 001 <span class="red-square" aria-hidden="true"></span> NIGHT SHIFT</span>
+    </header>
+
+    <section class="intro" aria-labelledby="game-title">
+      <div class="intro-copy">
+        <div class="eyebrow"><span class="small-dot"></span> 2D PIXEL ART / PLATFORMER</div>
+        <h1 id="game-title">NOIR<span class="red-colon">:</span> <span class="white">RED TIE</span></h1>
+        <p>Три ночи. Три района. Один детектив в красном галстуке. Прыгай по крышам, собирай сигареты и находи выход.</p>
+      </div>
+      <div class="case-stamp" aria-hidden="true"><span>CONFIDENTIAL</span><strong>03</strong><small>ROOFTOPS</small></div>
+    </section>
+
+    <main>
+      <section class="game-shell" aria-label="Игра-платформер">
+        <div class="hud" aria-live="polite">
+          <div class="hud-cell"><span class="hud-label">РАЙОН</span><strong id="hud-level">01 / 03</strong></div>
+          <div class="hud-cell"><span class="hud-label">СИГАРЕТЫ</span><strong id="hud-items">0 / 6</strong></div>
+          <div class="hud-cell"><span class="hud-label">ОЧКИ</span><strong id="hud-score">0000</strong></div>
+          <div class="hud-cell"><span class="hud-label">ЖИЗНИ</span><strong id="hud-lives">♥ ♥ ♥</strong></div>
+          <div class="hud-cell hud-best"><span class="hud-label">РЕКОРД</span><strong id="hud-best">0000</strong></div>
+        </div>
+
+        <div class="canvas-wrapper">
+          <canvas id="game" width="800" height="450" aria-label="Игровое поле: детектив прыгает по крышам и собирает сигареты">
+            Для игры требуется браузер с поддержкой Canvas.
+          </canvas>
+          <div class="screen-overlay" id="screen-overlay">
+            <div class="overlay-content">
+              <span class="overlay-eyebrow" id="overlay-eyebrow">ДЕЛО № 001</span>
+              <h2 id="overlay-title">НОЧНОЙ ГОРОД<br><em>НЕ СПИТ</em></h2>
+              <p id="overlay-description">Дойди до красной двери, собрав все сигареты по пути. Берегись пропастей между крышами.</p>
+              <button id="overlay-button" class="primary-button" type="button">НАЧАТЬ ДЕЛО <span>→</span></button>
+              <p class="overlay-hint">A / D — движение &nbsp;·&nbsp; ПРОБЕЛ — прыжок</p>
+            </div>
+          </div>
+          <div class="game-toast" id="game-toast" role="status" aria-live="polite"></div>
+          <div class="canvas-corner canvas-corner-tl"></div><div class="canvas-corner canvas-corner-tr"></div>
+          <div class="canvas-corner canvas-corner-bl"></div><div class="canvas-corner canvas-corner-br"></div>
+        </div>
+
+        <div class="game-footer">
+          <div class="game-status"><span class="pulse"></span><span id="status-text">ОЖИДАНИЕ НАЧАЛА ДЕЛА</span></div>
+          <div class="game-buttons">
+            <button type="button" id="pause-button">Ⅱ ПАУЗА</button>
+            <button type="button" id="restart-button">↺ ЗАНОВО</button>
+          </div>
+        </div>
+      </section>
+
+      <div class="touch-controls" aria-label="Сенсорное управление">
+        <div class="touch-movement">
+          <button type="button" class="touch-button" data-control="left" aria-label="Идти влево">◀</button>
+          <button type="button" class="touch-button" data-control="right" aria-label="Идти вправо">▶</button>
+        </div>
+        <button type="button" class="touch-button touch-jump" data-control="jump">ПРЫЖОК ↑</button>
+      </div>
+
+      <section class="information" aria-label="Информация об игре">
+        <div class="info-panel">
+          <span class="info-number">01 / УПРАВЛЕНИЕ</span>
+          <h3>Правила города</h3>
+          <p><kbd>A</kbd> <kbd>D</kbd> или <kbd>←</kbd> <kbd>→</kbd> — движение. <kbd>ПРОБЕЛ</kbd> / <kbd>W</kbd> / <kbd>↑</kbd> — прыжок. <kbd>P</kbd> — пауза. <kbd>R</kbd> — начать заново.</p>
+        </div>
+        <div class="info-panel">
+          <span class="info-number">02 / ЗАДАЧА</span>
+          <h3>Найди выход</h3>
+          <p>Подбери все сигареты на уровне, затем подойди к красной двери. У тебя три жизни, три уровня и одна ночь.</p>
+        </div>
+        <div class="info-panel">
+          <span class="info-number">03 / ДЕТАЛИ</span>
+          <h3>Маленькая игра</h3>
+          <p>Canvas + чистый JavaScript. Пиксельная графика нарисована кодом, прогресс рекорда сохраняется в браузере.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>© 2026 · SKILLHACK · IVAN GRITSENKO</span>
+      <span>СОЗДАНО С ПОМОЩЬЮ CHATGPT · ВРЕМЯ: ~30–45 МИН*</span>
+      <span class="footer-note">*Примерная оценка. Для сдачи укажи своё фактическое время в README.</span>
+    </footer>
+  </div>
+</body>
+</html>
